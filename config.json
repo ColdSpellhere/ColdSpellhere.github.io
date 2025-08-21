@@ -14,7 +14,6 @@
     "urlMode":"issue",
     "showPostSource":1,
     "rssSplit":"sentence",
-    "bottomText":"This blog is licensed under <a href="https://creativecommons.org/licenses/by/4.0/legalcode.zh-hans" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.
-",
+    "bottomText":"This blog is licensed under CC BY-NC-SA 4.0/n本文受CC BY-NC-SA 4.0保护",
     "needComment":1
 }
