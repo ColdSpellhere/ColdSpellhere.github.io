@@ -2,5 +2,18 @@
     "title":"ColdSpell's Blog",
     "subTitle":"Step into this new world together",
     "avatarUrl":"https://avatars.githubusercontent.com/u/207527992?v=4",
-    "GMEEK_VERSION":"last"
+    "GMEEK_VERSION":"last",
+    "email":"coldspell060319@gmail.com",
+    "startSite":"08/22/2015",
+    "onePageListNum":15,
+    "commentLabelColor":"#0abab5",
+    "yearColorList":["#bc4c00", "#0969da", "#1f883d", "#A333D0"],
+    "i18n":"CN",
+    "UTC":8,
+    "themeMode":"manual",
+    "urlMode":"pinyin",
+    "showPostSource":1,
+    "rssSplit":"sentence",
+    "bottomText":"This blog is licensed under CC BY-NC-SA 4.0.",
+    "needComment":1
 }
