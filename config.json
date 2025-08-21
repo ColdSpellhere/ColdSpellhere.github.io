@@ -11,9 +11,10 @@
     "i18n":"CN",
     "UTC":8,
     "themeMode":"manual",
-    "urlMode":"pinyin",
+    "urlMode":"issue",
     "showPostSource":1,
     "rssSplit":"sentence",
-    "bottomText":"This blog is licensed under CC BY-NC-SA 4.0.",
+    "bottomText":"This blog is licensed under <a href="https://creativecommons.org/licenses/by/4.0/legalcode.zh-hans" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.
+",
     "needComment":1
 }
