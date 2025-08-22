@@ -22,7 +22,6 @@
         "clock": "<div id='blog-clock' style='position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(255, 255, 255, 0.9); padding: 10px 15px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);'><div id='clock-time' style='font-size: 18px; font-weight: bold; color: #333;'></div><div id='clock-date' style='font-size: 12px; color: #666;'></div></div>"
     },
     "customJS": "function updateClock(){const e=new Date,t=e.getHours().toString().padStart(2,\"0\"),o=e.getMinutes().toString().padStart(2,\"0\"),a=e.getSeconds().toString().padStart(2,\"0\"),n=e.getFullYear(),r=(e.getMonth()+1).toString().padStart(2,\"0\"),d=e.getDate().toString().padStart(2,\"0\"),l=[\"日\",\"一\",\"二\",\"三\",\"四\",\"五\",\"六\"],c=l[e.getDay()];document.getElementById(\"clock-time\").textContent=`${t}:${o}:${a}`,document.getElementById(\"clock-date\").textContent=`${n}-${r}-${d} 周${c}`}updateClock(),setInterval(updateClock,1e3);"
-    }
     "needComment":1
 }
 
