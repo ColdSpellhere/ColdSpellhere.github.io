@@ -13,4 +13,4 @@ CC 4.0版本于2013年11月25日发布。自此之后，CC 4.0被鼓励在全球
 
 
 ### 知识共享许可协议官方页
-[https://creativecommons.org/licenses/by/4.0/legalcode.zh-hans](知识共享许可协议官方页)
+https://creativecommons.org/licenses/by/4.0/legalcode.zh-hans

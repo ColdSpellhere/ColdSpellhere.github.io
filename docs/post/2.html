@@ -90,7 +90,7 @@ CC 4.0版本于2013年11月25日发布。自此之后，CC 4.0被鼓励在全球
 “<strong>演绎作品(Adapted Material)：</strong> 指受到著作权与类似权利保护的，基于授权作品(Licensed Material)而创作的作品(material)，例如对授权作品(Licensed Material)的翻译、改编、编排、改写或其他依据著作权与类似权利需要获得所有人许可的修改。为本公共许可协议之目的，当授权作品(Licensed Material)为音乐作品、表演或录音时，将其依时间序列关系与动态影像配合一致而形成的作品，视为演绎作品(Adapted Material)。 ”</p>
 </blockquote>
 <h3>知识共享许可协议官方页</h3>
-<p><a href="%E7%9F%A5%E8%AF%86%E5%85%B1%E4%BA%AB%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE%E5%AE%98%E6%96%B9%E9%A1%B5">https://creativecommons.org/licenses/by/4.0/legalcode.zh-hans</a></p></div>
+<p><a href="https://creativecommons.org/licenses/by/4.0/legalcode.zh-hans" rel="nofollow">https://creativecommons.org/licenses/by/4.0/legalcode.zh-hans</a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">本博客一切文章受 <a href="https://github.com/ColdSpellhere/ColdSpellhere.github.io/issues/2#issue-3343299585/" target="_blank" rel="noopener" style="color: inherit;">CC BY-NC-SA 4.0</a> 保护</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
@@ -149,7 +149,11 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-
+cmButton=document.getElementById("cmButton");
+    span=document.createElement("span");
+    span.setAttribute("class","Counter");
+    span.innerHTML="2";
+    cmButton.appendChild(span);
 
 
 function openComments(){
