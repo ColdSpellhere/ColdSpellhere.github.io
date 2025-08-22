@@ -172,55 +172,5 @@ for(var i=0;i<iconPost.length;i++){
 
 </script>
 
-<!-- 在适当的位置添加时钟容器 -->
-<div id="blog-clock" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
-    <div id="clock-time" style="font-size: 18px; font-weight: bold; color: #333;"></div>
-    <div id="clock-date" style="font-size: 12px; color: #666;"></div>
-</div>
-
-<script>
-// 时钟功能
-function updateClock() {
-    const now = new Date();
-    
-    // 格式化时间
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
-    
-    // 格式化日期
-    const year = now.getFullYear();
-    const month = (now.getMonth() + 1).toString().padStart(2, '0');
-    const day = now.getDate().toString().padStart(2, '0');
-    const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
-    const weekday = weekdays[now.getDay()];
-    
-    // 更新显示
-    document.getElementById('clock-time').textContent = `${hours}:${minutes}:${seconds}`;
-    document.getElementById('clock-date').textContent = `${year}-${month}-${day} 周${weekday}`;
-}
-
-// 初始更新并设置定时器
-updateClock();
-setInterval(updateClock, 1000);
-</script>
-
-<style>
-#blog-clock {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-#blog-clock:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-    transition: all 0.3s ease;
-}
-</style>
-
 
 </html>
