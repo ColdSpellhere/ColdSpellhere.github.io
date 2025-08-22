@@ -24,4 +24,4 @@
     "customJS": "function updateClock(){const e=new Date,t=e.getHours().toString().padStart(2,\"0\"),o=e.getMinutes().toString().padStart(2,\"0\"),a=e.getSeconds().toString().padStart(2,\"0\"),n=e.getFullYear(),r=(e.getMonth()+1).toString().padStart(2,\"0\"),d=e.getDate().toString().padStart(2,\"0\"),l=[\"日\",\"一\",\"二\",\"三\",\"四\",\"五\",\"六\"],c=l[e.getDay()];document.getElementById(\"clock-time\").textContent=`${t}:${o}:${a}`,document.getElementById(\"clock-date\").textContent=`${n}-${r}-${d} 周${c}`}updateClock(),setInterval(updateClock,1e3);"
 }
     "needComment":1
-}
+
