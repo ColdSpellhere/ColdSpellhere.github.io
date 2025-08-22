@@ -1,6 +1,6 @@
 {
     "title":"ColdSpell's Blog",
-    "subTitle":"Step into this new world together",
+    "subTitle":"Contact Email:coldspell060319@gmail.com<br>欢迎来聊聊天",
     "avatarUrl":"https://avatars.githubusercontent.com/u/207527992?v=4",
     "GMEEK_VERSION":"last",
     "email":"coldspell060319@gmail.com",
@@ -14,6 +14,6 @@
     "urlMode":"issue",
     "showPostSource":1,
     "rssSplit":"sentence",
-    "bottomText": "本博客一切文章受 <a href=\"https://github.com/ColdSpellhere/ColdSpellhere.github.io/issues/2#issue-3343299585/\" target=\"_blank\" rel=\"noopener\" style=\"color: inherit;\">CC BY-NC-SA 4.0</a> 保护",
+    "bottomText": "本博客一切文章遵守 <a href=\"https://github.com/ColdSpellhere/ColdSpellhere.github.io/issues/2#issue-3343299585/\" target=\"_blank\" rel=\"noopener\" style=\"color: inherit;\">CC BY-NC-SA 4.0</a> 协议",
     "needComment":1
 }
