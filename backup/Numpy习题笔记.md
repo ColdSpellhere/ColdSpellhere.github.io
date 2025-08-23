@@ -1,11 +1,10 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ColdSpell's Blog</title><link>https://ColdSpellhere.github.io</link><description>Contact Email: coldspell060319@gmail.com&lt;br&gt;欢迎来&lt;a href='https://oopz.cn/i/alNZp4/' target='_blank' rel='noopener' style='color: inherit;'&gt;我的OOPZ频道&lt;/a&gt;聊聊天</description><copyright>ColdSpell's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/207527992?v=4</url><title>avatar</title><link>https://ColdSpellhere.github.io</link></image><lastBuildDate>Sat, 23 Aug 2025 21:58:20 +0000</lastBuildDate><managingEditor>ColdSpell's Blog</managingEditor><ttl>60</ttl><webMaster>ColdSpell's Blog</webMaster><item><title>Numpy习题笔记</title><link>https://ColdSpellhere.github.io/post/3.html</link><description># 1.归一化，标准化
+# 1.归一化，标准化
 ![Compare](https://i-blog.csdnimg.cn/blog_migrate/6aec0785b4affc9a049f8b7b796c9915.png)
 ## 归一化
 ```Python
 Z = np.random.random((5,5))
 print(Z)
-print('\n')
+print("\n")
 Z_scale = (Z - np.min(Z)) / np.ptp(Z)) 
 #最值归一化（MinMaxScaler） (np.ptp(Z))=(np.max(Z) - np.min(Z)
 print(Z_scale)
@@ -22,7 +21,7 @@ print(Z_scale)
 ```Python
 Z = np.random.random((5,5))
 print(Z)
-print('\n')
+print("\n")
 Z = (Z - np.mean (Z)) / (np.std (Z))
 print(Z)
 ```
@@ -52,17 +51,17 @@ def extract_centered_subarray(
 
     padding_mode: str = 'constant'
 
-) -&gt; np.ndarray:
+) -> np.ndarray:
 
     # 参数校验
 
     if len(shape) != array.ndim:
 
-        raise ValueError(f'shape维度 {len(shape)} 必须与输入数组维度 {array.ndim} 相同')
+        raise ValueError(f"shape维度 {len(shape)} 必须与输入数组维度 {array.ndim} 相同")
 
     if len(center) != array.ndim:
 
-        raise ValueError(f'center维度 {len(center)} 必须与输入数组维度 {array.ndim} 相同')
+        raise ValueError(f"center维度 {len(center)} 必须与输入数组维度 {array.ndim} 相同")
 
     # 计算理论范围
 
@@ -121,19 +120,37 @@ def extract_centered_subarray(
         return result
 
 # ------------------------- 示例用法 -------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     # 示例1：2D数组中心提取
     Z = np.arange(25).reshape(5,5)
-    print('原始数组:\n', Z)
-    print('\n中心(1,1)的3x3子数组:\n', extract_centered_subarray(Z, (3,3), (1,1)))
+    print("原始数组:\n", Z)
+    print("\n中心(1,1)的3x3子数组:\n", extract_centered_subarray(Z, (3,3), (1,1)))
 
     # 示例2：边界填充
-    print('\n中心(0,0)的3x3子数组（自动填充）:\n', 
+    print("\n中心(0,0)的3x3子数组（自动填充）:\n", 
           extract_centered_subarray(Z, (3,3), (0,0), fill=-1))
 
     # 示例3：边缘值填充模式
-    print('\n边缘填充模式:\n', 
+    print("\n边缘填充模式:\n", 
           extract_centered_subarray(Z, (3,3), (0,0), padding_mode='edge'))
 ```
-###### 从数组中提取以指定位置为中心的固定形状子数组，自动处理边界填充。</description><guid isPermaLink="true">https://ColdSpellhere.github.io/post/3.html</guid><pubDate>Sat, 23 Aug 2025 21:57:48 +0000</pubDate></item><item><title>什么是CC协议（知识共享许可协议）</title><link>https://ColdSpellhere.github.io/post/2.html</link><description>### 什么是CC协议？
-知识共享许可协议（Creative Commons license），又名CC协议，是一种允许他人分发作品的公共版权许可。</description><guid isPermaLink="true">https://ColdSpellhere.github.io/post/2.html</guid><pubDate>Thu, 21 Aug 2025 21:51:34 +0000</pubDate></item><item><title>This is a test page</title><link>https://ColdSpellhere.github.io/post/1.html</link><description>into a new world。</description><guid isPermaLink="true">https://ColdSpellhere.github.io/post/1.html</guid><pubDate>Thu, 21 Aug 2025 20:45:02 +0000</pubDate></item></channel></rss>
+###### 从数组中提取以指定位置为中心的固定形状子数组，自动处理边界填充。
+#参数:
+`array (np.ndarray)`: 输入数组（支持任意维度）。
+`shape (tuple)`: 目标子数组的形状（必须与输入数组维度相同）。
+`center (tuple)`: 中心位置的坐标（如 (y,x) 或 (z,y,x)）。
+`fill (float, optional)`: 填充值，默认为0。
+`padding_mode (str, optional)`: 填充模式，可选 'constant'（固定值）或 'edge'（边缘值填充）。
+#返回:
+`np.ndarray`: 提取的子数组，形状为 `shape`。
+###### 输出示例
+```
+>>>[[ 0  1  2  3  4]
+	[ 5  6  7  8  9]
+	[10 11 12 13 14]
+	[15 16 17 18 19]
+	[20 21 22 23 24]]
+>>> [ 0  1  2]
+	[ 5  6  7]
+	[10 11 12]]
+```
