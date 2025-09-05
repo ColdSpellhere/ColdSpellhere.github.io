@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ColdSpell's Blog</title><link>https://ColdSpellhere.github.io</link><description>Contact Email: coldspell060319@gmail.com&lt;br&gt;欢迎来&lt;a href='https://oopz.cn/i/alNZp4/' target='_blank' rel='noopener' style='color: inherit;'&gt;我的OOPZ频道&lt;/a&gt;聊聊天</description><copyright>ColdSpell's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/207527992?v=4</url><title>avatar</title><link>https://ColdSpellhere.github.io</link></image><lastBuildDate>Fri, 05 Sep 2025 06:36:37 +0000</lastBuildDate><managingEditor>ColdSpell's Blog</managingEditor><ttl>60</ttl><webMaster>ColdSpell's Blog</webMaster><item><title>DataScience Glossary Flowchart</title><link>https://ColdSpellhere.github.io/post/4.html</link><description>##### Chinese Version
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ColdSpell's Blog</title><link>https://ColdSpellhere.github.io</link><description>Contact Email: coldspell060319@gmail.com&lt;br&gt;欢迎来&lt;a href='https://oopz.cn/i/alNZp4/' target='_blank' rel='noopener' style='color: inherit;'&gt;我的OOPZ频道&lt;/a&gt;聊聊天</description><copyright>ColdSpell's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/207527992?v=4</url><title>avatar</title><link>https://ColdSpellhere.github.io</link></image><lastBuildDate>Fri, 05 Sep 2025 06:40:27 +0000</lastBuildDate><managingEditor>ColdSpell's Blog</managingEditor><ttl>60</ttl><webMaster>ColdSpell's Blog</webMaster><item><title>DataScience Glossary Flowchart</title><link>https://ColdSpellhere.github.io/post/4.html</link><description>##### Chinese Version
 ```mermaid
 flowchart TD
-    A[数据源&lt;br&gt;业务系统、IoT、日志等] --&gt;|原始数据流入| B[数据池 Data Lake]
+    A[数据源&lt;br&gt;业务系统、IoT、日志等] --&gt;|原始数据流入| B[数据池 ]
 
-    subgraph Governance [数据治理 Data Governance]
+    subgraph Governance [数据治理 ]
         G[政策/标准/质量/安全&lt;br&gt;贯穿全流程]
     end
 
-    B -- 数据管道 Data Pipeline --&gt; C{数据集成&lt;br&gt;Data Integration}
+    B -- 数据管道 Data Pipeline --&gt; C{数据集成&lt;br&gt;}
     C -- 抽取、清洗、转换&lt;br&gt;（ETL/ELT） --&gt; B
-    C -- 组织、加工 --&gt; D[数据集市 Data Mart]
+    C -- 组织、加工 --&gt; D[数据集市 ]
 
     D --&gt; E[最终用户&lt;br&gt;BI、分析、应用]
     B --&gt; F[数据科学家&lt;br&gt;探索性分析]
@@ -25,8 +25,8 @@ flowchart TD
 flowchart TD
     A[Data Sources&lt;br&gt;Business Apps, IoT, Logs] --&gt;|Raw Data Ingest| B[Data Lake]
 
-    subgraph Governance [Data Governance&lt;br&gt;Policies/Standards/Quality/Security]
-        G[Governs Entire Process]
+    subgraph Governance [Data Governance&lt;br&gt;Governs Entire Process]
+        G[Policies/Standards/Quality/Security]
     end
 
     B -- Data Pipeline --&gt; C{Data Integration}
