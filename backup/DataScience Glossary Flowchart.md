@@ -1,3 +1,4 @@
+Notice：从Blog进入可能无法正常显示流程图，可以跳转Github或者在评论区查看，本人正在积极解决该问题
 ##### Chinese Version
 ```mermaid
 flowchart TD

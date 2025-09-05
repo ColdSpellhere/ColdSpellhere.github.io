@@ -10,7 +10,8 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="##### Chinese Version
+<meta name="description" content="Notice：从Blog进入可能无法正常显示流程图，可以跳转Github或者在评论区查看，本人正在积极解决该问题
+##### Chinese Version
 ```mermaid
 flowchart TD
     A[数据源<br>业务系统、IoT、日志等] -->|原始数据流入| B[数据池 ]
@@ -53,7 +54,8 @@ flowchart TD
     G -.->|Governs & Standards| D
 ```。">
 <meta property="og:title" content="DataScience Glossary Flowchart">
-<meta property="og:description" content="##### Chinese Version
+<meta property="og:description" content="Notice：从Blog进入可能无法正常显示流程图，可以跳转Github或者在评论区查看，本人正在积极解决该问题
+##### Chinese Version
 ```mermaid
 flowchart TD
     A[数据源<br>业务系统、IoT、日志等] -->|原始数据流入| B[数据池 ]
@@ -165,7 +167,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h5>Chinese Version</h5>
+<div class="markdown-body" id="postBody"><p>Notice：从Blog进入可能无法正常显示流程图，可以跳转Github或者在评论区查看，本人正在积极解决该问题</p>
+<h5>Chinese Version</h5>
 <div class="highlight highlight-source-mermaid"><pre class="notranslate"><span class="pl-k">flowchart</span> <span class="pl-c1">TD</span>
     <span class="pl-ent">A</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>数据源&lt;<span class="pl-ent">br</span>&gt;业务系统、IoT、日志等<span class="pl-pds"><span class="pl-sg">]</span></span></span> <span class="pl-k">--&gt;</span><span class="pl-k">|</span><span class="pl-s">原始数据流入</span><span class="pl-k">|</span> <span class="pl-ent">B</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>数据池 <span class="pl-pds"><span class="pl-sg">]</span></span></span>
 
@@ -261,7 +264,11 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-
+cmButton=document.getElementById("cmButton");
+    span=document.createElement("span");
+    span.setAttribute("class","Counter");
+    span.innerHTML="1";
+    cmButton.appendChild(span);
 
 
 function openComments(){
