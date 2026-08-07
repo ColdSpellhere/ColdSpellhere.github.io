@@ -11,6 +11,7 @@ assert(html.includes('name="description"'), 'missing description metadata');
 assert(html.includes('rel="canonical"'), 'missing canonical URL');
 assert(!html.includes('Tracing failure across a TLS handshake'), 'fictional note leaked into production');
 assert(!html.includes('qq-violation-bot'), 'excluded project leaked into homepage');
+assert(!html.includes('ZhiYu-CancerPrediction'), 'removed project leaked into homepage');
 
 for (const path of ['dist/rss.xml', 'dist/robots.txt', 'dist/sitemap-index.xml']) {
   assert(existsSync(path), `missing ${path}`);
