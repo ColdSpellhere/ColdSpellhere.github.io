@@ -1,0 +1,31 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import NoteLayout from '../../layouts/NoteLayout.astro';
+import { getPublishedNotes } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const notes = getPublishedNotes(await getCollection('notes'));
+
+  return notes.map((entry, index) => ({
+    params: { id: entry.id },
+    props: {
+      entry,
+      previous: notes[index + 1],
+      next: notes[index - 1],
+    },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'notes'>;
+  previous?: CollectionEntry<'notes'>;
+  next?: CollectionEntry<'notes'>;
+}
+
+const { entry, previous, next } = Astro.props;
+const { Content, headings } = await render(entry);
+---
+
+<NoteLayout entry={entry} headings={headings} previous={previous} next={next}>
+  <Content />
+</NoteLayout>

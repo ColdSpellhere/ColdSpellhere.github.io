@@ -1,0 +1,229 @@
+---
+import type { MarkdownHeading } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import IssueComments from '../components/IssueComments.astro';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  entry: CollectionEntry<'notes'>;
+  headings: MarkdownHeading[];
+  previous?: CollectionEntry<'notes'>;
+  next?: CollectionEntry<'notes'>;
+}
+
+const { entry, headings, previous, next } = Astro.props;
+const date = new Intl.DateTimeFormat(entry.data.language, {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(entry.data.publishedAt);
+const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+---
+
+<BaseLayout title={`${entry.data.title} — ColdSpell`} description={entry.data.description} lang={entry.data.language}>
+  <article class="page-shell note-shell">
+    <header class="note-header">
+      <a class="text-link" href="/notes/">← All notes</a>
+      <p class="eyebrow">{entry.data.series ?? 'Technical note'}</p>
+      <h1>{entry.data.title}</h1>
+      <p class="note-description">{entry.data.description}</p>
+      <div class="note-byline">
+        <time datetime={entry.data.publishedAt.toISOString()}>{date}</time>
+        <span>{entry.data.language}</span>
+        {entry.data.tags.map((tag) => <a href={`/topics/${tag.toLowerCase()}/`}>{tag}</a>)}
+      </div>
+    </header>
+
+    <div class:list={['note-layout', { 'without-toc': toc.length === 0 }]}>
+      {toc.length > 0 && (
+        <aside class="toc" aria-labelledby="toc-title">
+          <strong id="toc-title">On this page</strong>
+          <ol>
+            {toc.map((heading) => (
+              <li class:list={{ nested: heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>
+            ))}
+          </ol>
+        </aside>
+      )}
+      <div class="prose" data-pagefind-body>
+        <slot />
+        <IssueComments />
+      </div>
+    </div>
+
+    {(previous || next) && (
+      <nav class="note-navigation" aria-label="Adjacent notes">
+        {previous ? <a href={`/notes/${previous.id}/`}><span>Previous</span><strong>{previous.data.title}</strong></a> : <span></span>}
+        {next && <a href={`/notes/${next.id}/`}><span>Next</span><strong>{next.data.title}</strong></a>}
+      </nav>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .note-shell {
+    padding-top: clamp(4rem, 9vw, 8rem);
+    padding-bottom: 6rem;
+  }
+
+  .note-header {
+    max-width: 54rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .note-header > .text-link {
+    display: inline-block;
+    margin-bottom: 3rem;
+  }
+
+  .note-header h1 {
+    margin-bottom: 1.25rem;
+    font-size: clamp(2.5rem, 6vw, 4.8rem);
+  }
+
+  .note-description {
+    color: var(--color-muted);
+    font-size: clamp(1.08rem, 2vw, 1.3rem);
+  }
+
+  .note-byline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .65rem 1rem;
+    margin-top: 2rem;
+    color: var(--color-muted);
+    font-size: .85rem;
+  }
+
+  .note-byline a {
+    color: var(--color-primary-deep);
+    font-weight: 700;
+  }
+
+  .note-layout {
+    display: grid;
+    grid-template-columns: 13rem minmax(0, 46rem);
+    justify-content: center;
+    gap: clamp(2rem, 6vw, 5rem);
+    margin-top: clamp(4rem, 8vw, 7rem);
+  }
+
+  .note-layout.without-toc {
+    grid-template-columns: minmax(0, 46rem);
+  }
+
+  .toc {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+    border-left: 1px solid var(--color-line);
+    padding-left: 1rem;
+    font-size: .83rem;
+  }
+
+  .toc ol {
+    margin: .8rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .toc li + li {
+    margin-top: .6rem;
+  }
+
+  .toc li.nested {
+    padding-left: .8rem;
+  }
+
+  .toc a {
+    color: var(--color-muted);
+    text-decoration: none;
+  }
+
+  .prose {
+    min-width: 0;
+    color: #334764;
+    font-size: 1.04rem;
+  }
+
+  .prose :global(h2),
+  .prose :global(h3) {
+    scroll-margin-top: 2rem;
+    margin-top: 2.8em;
+  }
+
+  .prose :global(a) {
+    color: var(--color-primary-deep);
+  }
+
+  .prose :global(pre) {
+    overflow-x: auto;
+    border: 1px solid #cfdcf0;
+    border-radius: var(--radius-md);
+    padding: 1.2rem;
+    color: #213550;
+    background: #eef4fb;
+  }
+
+  .prose :global(:not(pre) > code) {
+    border-radius: .35rem;
+    padding: .12rem .34rem;
+    color: #4b52a1;
+    background: #eef0ff;
+  }
+
+  .prose :global(blockquote) {
+    margin-inline: 0;
+    border-left: .25rem solid var(--color-cyan);
+    padding: .8rem 1.2rem;
+    color: var(--color-muted);
+    background: #f2fbfa;
+  }
+
+  .prose :global(img) {
+    border-radius: var(--radius-lg);
+  }
+
+  .note-navigation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-width: 64rem;
+    margin: 5rem auto 0;
+  }
+
+  .note-navigation a {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: 1.2rem;
+    background: #fff;
+    text-decoration: none;
+  }
+
+  .note-navigation a:last-child {
+    text-align: right;
+  }
+
+  .note-navigation span,
+  .note-navigation strong {
+    display: block;
+  }
+
+  .note-navigation span {
+    color: var(--color-muted);
+    font-size: .75rem;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 52rem) {
+    .note-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .toc {
+      position: static;
+    }
+  }
+</style>

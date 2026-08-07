@@ -1,0 +1,61 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  note: CollectionEntry<'notes'>;
+}
+
+const { note } = Astro.props;
+const published = new Intl.DateTimeFormat(note.data.language, {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+}).format(note.data.publishedAt);
+---
+
+<article class="note-card card">
+  <div class="note-meta">
+    <time datetime={note.data.publishedAt.toISOString()}>{published}</time>
+    <span>{note.data.language}</span>
+  </div>
+  <h2><a href={`/notes/${note.id}/`}>{note.data.title}</a></h2>
+  <p>{note.data.description}</p>
+  <ul class="pill-list" aria-label="Topics">
+    {note.data.tags.map((tag) => (
+      <li><a class="pill" href={`/topics/${tag.toLowerCase()}/`}>{tag}</a></li>
+    ))}
+  </ul>
+</article>
+
+<style>
+  .note-card h2 {
+    margin-bottom: .8rem;
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+  }
+
+  .note-card h2 a {
+    text-decoration: none;
+  }
+
+  .note-card p {
+    color: var(--color-muted);
+  }
+
+  .note-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    color: var(--color-primary-deep);
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .pill-list a {
+    position: relative;
+    z-index: 2;
+    text-decoration: none;
+  }
+</style>

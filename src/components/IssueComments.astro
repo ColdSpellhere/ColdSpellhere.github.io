@@ -1,0 +1,38 @@
+---
+const utterancesConfig: Record<string, string | boolean> = {
+  src: 'https://utteranc.es/client.js',
+  repo: 'ColdSpellhere/ColdSpellhere.github.io',
+  'issue-term': 'pathname',
+  label: 'comments',
+  theme: 'github-light',
+  crossorigin: 'anonymous',
+  async: true,
+};
+---
+
+<section class="comments" aria-labelledby="comments-title">
+  <div class="comments-heading">
+    <p class="eyebrow">Discussion</p>
+    <h2 id="comments-title">Comments</h2>
+    <p>Comments are hosted in GitHub Issues and loaded only on published note pages.</p>
+  </div>
+  <noscript>Enable JavaScript to load GitHub Issue comments.</noscript>
+  <script is:inline {...utterancesConfig}></script>
+</section>
+
+<style>
+  .comments {
+    margin-top: 5rem;
+    border-top: 1px solid var(--color-line);
+    padding-top: 2.5rem;
+  }
+
+  .comments-heading h2 {
+    margin-bottom: .5rem;
+    font-size: 1.8rem;
+  }
+
+  .comments-heading p:last-child {
+    color: var(--color-muted);
+  }
+</style>

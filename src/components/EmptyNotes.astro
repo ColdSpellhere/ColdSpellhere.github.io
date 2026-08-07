@@ -1,0 +1,23 @@
+---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<div class="empty-state">
+  <div>
+    <p class="eyebrow">Knowledge base</p>
+    {compact ? <h3>Notes coming soon</h3> : <h2>Notes coming soon</h2>}
+    <p>
+      The new library starts deliberately empty. Future notes will be written from real
+      experiments, incidents, and builds — not filled with placeholder articles.
+    </p>
+    <div class="button-row">
+      <a class="button button-secondary" href="/projects/">See current work</a>
+      <a class="text-link" href="https://github.com/ColdSpellhere">Follow on GitHub →</a>
+    </div>
+  </div>
+  <div class="empty-orb" aria-hidden="true"></div>
+</div>

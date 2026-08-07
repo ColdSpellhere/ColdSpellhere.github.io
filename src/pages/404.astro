@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page not found — ColdSpell" description="The requested page could not be found.">
+  <section class="page-shell not-found">
+    <div class="error-orb" aria-hidden="true">404</div>
+    <p class="eyebrow">Page not found</p>
+    <h1>This path went quiet.</h1>
+    <p class="lede">The page may have moved, or it may never have existed.</p>
+    <div class="button-row">
+      <a class="button button-primary" href="/">Back home</a>
+      <a class="button button-secondary" href="/notes/">Notes</a>
+      <a class="button button-secondary" href="/projects/">Projects</a>
+      <a class="text-link" href="/search/">Search →</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found { display: grid; place-items: center; min-height: 70vh; padding: 5rem 0; text-align: center; }
+  .not-found h1 { margin-bottom: 1rem; font-size: clamp(3rem, 8vw, 6rem); }
+  .not-found .button-row { justify-content: center; }
+  .error-orb { display: grid; place-items: center; width: 8rem; height: 8rem; margin-bottom: 2rem; border-radius: 50%; color: #fff; background: linear-gradient(135deg, var(--color-primary), var(--color-violet), var(--color-cyan)); box-shadow: var(--shadow-soft); font-family: var(--font-display); font-weight: 800; }
+</style>

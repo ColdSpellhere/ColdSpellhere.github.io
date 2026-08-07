@@ -1,0 +1,97 @@
+---
+import { getCollection } from 'astro:content';
+import EmptyNotes from '../components/EmptyNotes.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPublishedNotes } from '../lib/content';
+
+const notes = getPublishedNotes(await getCollection('notes'));
+---
+
+<BaseLayout title="Search — ColdSpell" description="Search ColdSpell's technical notes.">
+  <header class="page-shell page-hero">
+    <p class="eyebrow">Search</p>
+    <h1>Find the useful detail.</h1>
+    <p class="lede">Search across published notes by concept, protocol, tool, or failure mode.</p>
+  </header>
+  <section class="page-shell section-tight search-section" aria-label="Search notes">
+    {notes.length === 0 ? <EmptyNotes compact /> : (
+      <div class="search-panel">
+        <label for="search-input">Search published notes</label>
+        <div class="search-control">
+          <input id="search-input" type="search" placeholder="Try a protocol, tool, or concept…" autocomplete="off" />
+          <span aria-hidden="true">⌕</span>
+        </div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">Start typing to search.</p>
+        <ol id="search-results" class="search-results"></ol>
+      </div>
+    )}
+  </section>
+
+  {notes.length > 0 && (
+    <script>
+      type PagefindData = { url: string; excerpt: string; meta: { title: string } };
+      type PagefindResult = { data: () => Promise<PagefindData> };
+      type PagefindModule = {
+        search: (query: string) => Promise<{ results: PagefindResult[] }>;
+      };
+
+      const input = document.querySelector<HTMLInputElement>('#search-input');
+      const status = document.querySelector<HTMLElement>('#search-status');
+      const resultsList = document.querySelector<HTMLOListElement>('#search-results');
+      let pagefindPromise: Promise<PagefindModule> | undefined;
+      let searchSequence = 0;
+
+      const loadPagefind = () => {
+        pagefindPromise ??= new Function('return import("/pagefind/pagefind.js")')() as Promise<PagefindModule>;
+        return pagefindPromise;
+      };
+
+      input?.addEventListener('input', async () => {
+        const sequence = ++searchSequence;
+        const query = input.value.trim();
+        if (!status || !resultsList) return;
+
+        resultsList.replaceChildren();
+        if (!query) {
+          status.textContent = 'Start typing to search.';
+          return;
+        }
+
+        status.textContent = 'Searching…';
+        const pagefind = await loadPagefind();
+        const search = await pagefind.search(query);
+        const results = await Promise.all(search.results.slice(0, 10).map((result) => result.data()));
+        if (sequence !== searchSequence) return;
+
+        status.textContent = `${search.results.length} ${search.results.length === 1 ? 'result' : 'results'}`;
+        for (const result of results) {
+          const item = document.createElement('li');
+          const link = document.createElement('a');
+          const title = document.createElement('strong');
+          const excerpt = document.createElement('p');
+          link.href = result.url;
+          title.textContent = result.meta.title;
+          excerpt.innerHTML = result.excerpt;
+          link.append(title, excerpt);
+          item.append(link);
+          resultsList.append(item);
+        }
+      });
+    </script>
+  )}
+</BaseLayout>
+
+<style>
+  .search-section { min-height: 24rem; }
+  .search-panel { max-width: 54rem; margin-inline: auto; }
+  .search-panel > label { display: block; margin-bottom: .6rem; color: var(--color-heading); font-weight: 800; }
+  .search-control { position: relative; }
+  .search-control input { width: 100%; min-height: 4rem; border: 1px solid var(--color-line); border-radius: 1.2rem; padding: .9rem 3.5rem .9rem 1.2rem; color: var(--color-heading); background: #fff; box-shadow: var(--shadow-card); }
+  .search-control input:focus { border-color: var(--color-primary); }
+  .search-control span { position: absolute; top: 50%; right: 1.2rem; transform: translateY(-50%); color: var(--color-primary-deep); font-size: 1.6rem; }
+  .search-status { color: var(--color-muted); font-size: .86rem; }
+  .search-results { display: grid; gap: .75rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .search-results a { display: block; border: 1px solid var(--color-line); border-radius: var(--radius-lg); padding: 1.2rem; background: #fff; text-decoration: none; }
+  .search-results p { margin: .4rem 0 0; color: var(--color-muted); }
+  .search-results :global(mark) { color: var(--color-primary-deep); background: #e9efff; }
+</style>

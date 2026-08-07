@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import EmptyNotes from '../../components/EmptyNotes.astro';
+import NoteCard from '../../components/NoteCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPublishedNotes } from '../../lib/content';
+
+const notes = getPublishedNotes(await getCollection('notes'));
+---
+
+<BaseLayout title="Notes — ColdSpell" description="Technical notes on security, networking, AI engineering, Linux, and delivery.">
+  <header class="page-shell page-hero">
+    <p class="eyebrow">Knowledge base</p>
+    <h1>Notes built from the work.</h1>
+    <p class="lede">Experiments, investigations, and explanations written to remain useful after the immediate problem is solved.</p>
+  </header>
+  <section class="page-shell section-tight" aria-label="Published notes">
+    {notes.length === 0 ? <EmptyNotes compact /> : (
+      <div class="notes-grid">{notes.map((note) => <NoteCard note={note} />)}</div>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  @media (max-width: 45rem) {
+    .notes-grid { grid-template-columns: 1fr; }
+  }
+</style>

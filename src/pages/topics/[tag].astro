@@ -1,0 +1,48 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import NoteCard from '../../components/NoteCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { collectTags, getPublishedNotes } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const notes = getPublishedNotes(await getCollection('notes'));
+
+  return collectTags(notes).map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      notes: notes.filter((note) => note.data.tags.some((value) => value.toLowerCase() === tag)),
+    },
+  }));
+}
+
+interface Props {
+  tag: string;
+  notes: CollectionEntry<'notes'>[];
+}
+
+const { tag, notes } = Astro.props;
+---
+
+<BaseLayout title={`${tag} notes — ColdSpell`} description={`Published ColdSpell notes tagged ${tag}.`}>
+  <header class="page-shell page-hero">
+    <p class="eyebrow">Topic</p>
+    <h1>{tag}</h1>
+    <p class="lede">{notes.length} {notes.length === 1 ? 'note' : 'notes'} in this collection.</p>
+  </header>
+  <section class="page-shell section-tight notes-grid" aria-label={`${tag} notes`}>
+    {notes.map((note) => <NoteCard note={note} />)}
+  </section>
+</BaseLayout>
+
+<style>
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  @media (max-width: 45rem) {
+    .notes-grid { grid-template-columns: 1fr; }
+  }
+</style>

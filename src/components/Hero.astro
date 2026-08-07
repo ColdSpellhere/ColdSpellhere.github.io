@@ -1,0 +1,195 @@
+<section class="hero page-shell">
+  <div class="hero-copy">
+    <p class="eyebrow">Security · Networking · AI Engineering</p>
+    <h1>Systems that hold up beyond the demo.</h1>
+    <p class="hero-lede">
+      I build and document practical software across networks, Linux, AI applications,
+      automation, and deployment — with an eye for how systems behave in the real world.
+    </p>
+    <div class="button-row">
+      <a class="button button-primary" href="/projects/">Explore selected work <span aria-hidden="true">↗</span></a>
+      <a class="button button-secondary" href="/notes/">Browse notes <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="aurora aurora-one"></div>
+    <div class="aurora aurora-two"></div>
+    <div class="signal-card signal-card-main">
+      <span class="signal-dot"></span>
+      <span>Observe</span><span>Trace</span><span>Build</span>
+    </div>
+    <div class="signal-card signal-card-small">01 / practical engineering</div>
+    <svg class="signal-path" viewBox="0 0 420 310">
+      <path d="M15 242C102 242 84 86 181 86c91 0 77 139 176 139h45" fill="none" stroke="url(#hero-line)" stroke-width="3" stroke-linecap="round" />
+      <defs>
+        <linearGradient id="hero-line" x1="15" y1="242" x2="402" y2="225" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#37cbb8" />
+          <stop offset=".5" stop-color="#5a78f4" />
+          <stop offset="1" stop-color="#7d5bf5" />
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(21rem, 0.92fr);
+    align-items: center;
+    gap: clamp(2rem, 7vw, 6rem);
+    min-height: min(49rem, calc(100vh - 6rem));
+    padding-top: clamp(4rem, 9vw, 7rem);
+    padding-bottom: clamp(5rem, 10vw, 9rem);
+  }
+
+  .hero h1 {
+    max-width: 11ch;
+    margin-bottom: 1.35rem;
+    background: linear-gradient(110deg, #172642 4%, #3e5ed8 55%, #7357dc 92%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-lede {
+    max-width: 42rem;
+    margin-bottom: 2rem;
+    color: var(--color-muted);
+    font-size: clamp(1.06rem, 2vw, 1.28rem);
+  }
+
+  .hero-visual {
+    position: relative;
+    min-height: 30rem;
+    overflow-x: clip;
+    isolation: isolate;
+  }
+
+  .aurora {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(0.25rem);
+  }
+
+  .aurora-one {
+    top: 0;
+    right: 0;
+    width: 24rem;
+    height: 24rem;
+    background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.9), transparent 20%), linear-gradient(145deg, rgba(90,120,244,.62), rgba(125,91,245,.43) 52%, rgba(55,203,184,.5));
+    box-shadow: 0 2.5rem 7rem rgba(87, 111, 221, 0.25);
+    transform: rotate(-11deg) scaleX(0.9);
+  }
+
+  .aurora-two {
+    right: 15rem;
+    bottom: 1.5rem;
+    width: 10rem;
+    height: 10rem;
+    border: 1.4rem solid rgba(255, 255, 255, 0.56);
+    background: linear-gradient(145deg, rgba(55,203,184,.6), rgba(90,120,244,.5));
+    box-shadow: 0 1.5rem 4rem rgba(55, 203, 184, 0.22);
+  }
+
+  .signal-card {
+    position: absolute;
+    z-index: 2;
+    border: 1px solid rgba(255,255,255,.75);
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(1.2rem);
+  }
+
+  .signal-card-main {
+    top: 10rem;
+    right: 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .75rem 1rem;
+    width: 16rem;
+    border-radius: 1.4rem;
+    padding: 1.3rem;
+    color: #4b6084;
+    font-size: .84rem;
+    font-weight: 700;
+  }
+
+  .signal-card-main span:not(.signal-dot) {
+    grid-column: 2;
+  }
+
+  .signal-dot {
+    grid-row: 1 / 4;
+    width: .65rem;
+    height: .65rem;
+    margin-top: .3rem;
+    border-radius: 50%;
+    background: var(--color-cyan);
+    box-shadow: 0 0 0 .45rem rgba(55,203,184,.14);
+  }
+
+  .signal-card-small {
+    right: 10rem;
+    bottom: 1.5rem;
+    border-radius: 999px;
+    padding: .7rem 1rem;
+    color: var(--color-primary-deep);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .signal-path {
+    position: absolute;
+    z-index: 1;
+    inset: 4rem 0 auto -3rem;
+    width: 100%;
+    overflow: visible;
+    opacity: .48;
+  }
+
+  @media (max-width: 58rem) {
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .hero-visual {
+      min-height: 25rem;
+      max-width: 33rem;
+      width: 100%;
+      margin-inline: auto;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    .hero-visual {
+      min-height: 20rem;
+    }
+
+    .aurora-one {
+      width: 19rem;
+      height: 19rem;
+    }
+
+    .aurora-two {
+      right: auto;
+      left: 0;
+      width: 7rem;
+      height: 7rem;
+    }
+
+    .signal-card-main {
+      top: 7rem;
+      right: 0;
+    }
+
+    .signal-card-small {
+      right: 1rem;
+      bottom: 0;
+    }
+  }
+</style>

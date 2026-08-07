@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="About — ColdSpell" description="About ColdSpell's work across security, networking, AI engineering, Linux, and deployment.">
+  <header class="page-shell page-hero about-hero">
+    <div>
+      <p class="eyebrow">About</p>
+      <h1>Curiosity, made operational.</h1>
+    </div>
+    <p class="lede">I am a computer science student focused on the overlap between cybersecurity, computer networking, and AI engineering.</p>
+  </header>
+  <section class="page-shell section-tight about-grid">
+    <div class="about-copy">
+      <h2>How I work</h2>
+      <p>I like projects that cross boundaries: a model that needs a reliable interface, a service that needs deployment discipline, or a network problem that only makes sense after tracing the whole path.</p>
+      <p>This site is the durable layer for that work — a place for technical notes, decisions, experiments, and lessons worth returning to.</p>
+      <div class="button-row">
+        <a class="button button-primary" href="/projects/">Selected projects</a>
+        <a class="button button-secondary" href={site.email}>Email me</a>
+      </div>
+    </div>
+    <aside class="card focus-card">
+      <p class="eyebrow">Current focus</p>
+      <ul>
+        <li>Security and network troubleshooting</li>
+        <li>Linux systems and practical deployment</li>
+        <li>LLM applications and computer vision</li>
+        <li>Backend automation and technical delivery</li>
+      </ul>
+    </aside>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 3rem; }
+  .about-hero h1 { margin-bottom: 0; }
+  .about-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(18rem, .75fr); gap: clamp(2rem, 8vw, 7rem); }
+  .about-copy { max-width: 42rem; }
+  .about-copy h2 { margin-bottom: 1.5rem; }
+  .about-copy p { color: var(--color-muted); font-size: 1.08rem; }
+  .about-copy .button-row { margin-top: 2rem; }
+  .focus-card ul { margin: 0; padding-left: 1.2rem; }
+  .focus-card li + li { margin-top: .85rem; }
+  @media (max-width: 46rem) { .about-hero, .about-grid { grid-template-columns: 1fr; } }
+</style>

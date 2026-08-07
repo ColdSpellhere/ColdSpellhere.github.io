@@ -1,0 +1,35 @@
+---
+import SelectedProjects from '../components/SelectedProjects.astro';
+import { contributions } from '../data/contributions';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Projects — ColdSpell" description="Selected software projects and merged open-source contributions by ColdSpell.">
+  <header class="page-shell page-hero">
+    <p class="eyebrow">Projects</p>
+    <h1>Practical work, visible decisions.</h1>
+    <p class="lede">A focused selection of systems, product interfaces, and developer tooling — with public source where available.</p>
+  </header>
+  <SelectedProjects />
+  <section class="page-shell section" aria-labelledby="merged-work-title">
+    <div class="section-heading">
+      <div><p class="eyebrow">Merged upstream</p><h2 id="merged-work-title">Open-source contributions.</h2></div>
+    </div>
+    <div class="contribution-grid">
+      {contributions.map((item) => (
+        <a class="card contribution-card" href={item.href}>
+          <span>{item.repository}</span>
+          <strong>{item.title}</strong>
+          <span class="text-link">{item.pullRequest} ↗</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contribution-grid { display: grid; gap: .8rem; }
+  .contribution-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) auto; gap: 1rem; align-items: center; text-decoration: none; }
+  .contribution-card > span:first-child { color: var(--color-muted); font-size: .8rem; }
+  @media (max-width: 48rem) { .contribution-card { grid-template-columns: 1fr; } }
+</style>

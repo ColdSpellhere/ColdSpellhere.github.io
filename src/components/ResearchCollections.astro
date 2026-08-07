@@ -1,0 +1,62 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { researchThemes } from '../data/site';
+
+interface Props {
+  notes: CollectionEntry<'notes'>[];
+}
+
+const { notes } = Astro.props;
+const countFor = (tags: readonly string[]) => notes.filter((note) =>
+  note.data.tags.some((tag) => tags.includes(tag.toLowerCase())),
+).length;
+---
+
+<section class="page-shell section" aria-labelledby="collections-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Research collections</p>
+      <h2 id="collections-title">Three threads, one engineering practice.</h2>
+    </div>
+    <p class="lede">A working map of the subjects I keep returning to.</p>
+  </div>
+  <div class="card-grid">
+    {researchThemes.map((theme, index) => {
+      const count = countFor(theme.tags);
+      return (
+        <article class="card collection-card">
+          <span class="collection-index">0{index + 1}</span>
+          <h3>{theme.title}</h3>
+          <p>{theme.description}</p>
+          {count > 0 && <span class="collection-count">{count} {count === 1 ? 'note' : 'notes'}</span>}
+        </article>
+      );
+    })}
+  </div>
+</section>
+
+<style>
+  .collection-card {
+    min-height: 16rem;
+  }
+
+  .collection-index {
+    display: inline-block;
+    margin-bottom: 3.3rem;
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+  }
+
+  .collection-card p {
+    color: var(--color-muted);
+  }
+
+  .collection-count {
+    color: var(--color-primary-deep);
+    font-size: .8rem;
+    font-weight: 800;
+  }
+</style>

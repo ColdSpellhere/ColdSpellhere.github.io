@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import Hero from '../components/Hero.astro';
+import LatestNotes from '../components/LatestNotes.astro';
+import OpenSourceContributions from '../components/OpenSourceContributions.astro';
+import ResearchCollections from '../components/ResearchCollections.astro';
+import SearchEntry from '../components/SearchEntry.astro';
+import SelectedProjects from '../components/SelectedProjects.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPublishedNotes } from '../lib/content';
+
+const notes = getPublishedNotes(await getCollection('notes'));
+---
+
+<BaseLayout>
+  <Hero />
+  <SearchEntry />
+  <ResearchCollections notes={notes} />
+  <LatestNotes notes={notes} />
+  <SelectedProjects />
+  <OpenSourceContributions />
+</BaseLayout>

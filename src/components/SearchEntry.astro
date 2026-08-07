@@ -1,0 +1,58 @@
+<section class="page-shell section-tight" aria-labelledby="search-entry-title">
+  <a class="search-entry" href="/search/">
+    <span class="search-icon" aria-hidden="true">⌕</span>
+    <span>
+      <strong id="search-entry-title">Search the knowledge base</strong>
+      <small>Find notes by concept, protocol, tool, or failure mode.</small>
+    </span>
+    <span class="search-arrow" aria-hidden="true">→</span>
+  </a>
+</section>
+
+<style>
+  .search-entry {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid rgba(90, 120, 244, 0.18);
+    border-radius: 1.2rem;
+    padding: 1rem 1.2rem;
+    color: var(--color-heading);
+    background: rgba(255,255,255,.82);
+    box-shadow: var(--shadow-card);
+    text-decoration: none;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .search-entry:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .search-entry strong,
+  .search-entry small {
+    display: block;
+  }
+
+  .search-entry small {
+    margin-top: .1rem;
+    color: var(--color-muted);
+  }
+
+  .search-icon {
+    display: grid;
+    place-items: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: .9rem;
+    color: var(--color-primary-deep);
+    background: #edf2ff;
+    font-size: 1.6rem;
+  }
+
+  .search-arrow {
+    color: var(--color-primary-deep);
+    font-size: 1.4rem;
+  }
+</style>
